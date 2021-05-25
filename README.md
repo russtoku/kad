@@ -20,76 +20,37 @@ You need [Homebrew](https://brew.sh/) installed.
 
 ```
 $ brew install pstoedit
-$ brew install caskformula/caskformula/inkscape --HEAD --branch-0.92
+$ brew install caskformula/caskformula/inkscape
 ```
 
 ## Example
 
 ### Usage
 
-``` go
-package main
+You can create a program that uses the KAD library to generate SVG files from the
+settings defined in a JSON object. An example program is found in `./example/main.go`.
+It was moved there from this page.
 
-import (
-	"encoding/json"
-	"log"
+You can also build a command line program to easily try out
+different settings.
 
-	"github.com/swill/kad"
-)
-
-func main() {
-	// you can define settings and the layout in JSON
-	json_bytes := []byte(`{
-		"switch-type":3,
-		"stab-type":1,
-		"layout":[
-			["Num Lock","/","*","-"],
-			[{"f":3},"7\nHome","8\n↑","9\nPgUp",{"h":2}," "],
-			["4\n←","5","6\n→"],["1\nEnd","2\n↓","3\nPgDn",{"h":2},"Enter"],
-			[{"w":2},"0\nIns",".\nDel"]
-		],
-		"case": {
-			"case-type":"sandwich",
-			"mount-holes-num":4,
-			"mount-holes-size":3,
-			"mount-holes-edge":6
-		},
-		"top-padding":9,
-		"left-padding":9,
-		"right-padding":9,
-		"bottom-padding":9
-	}`)
-
-	// create a new KAD instance
-	cad := kad.New()
-
-	// populate the 'cad' instance with the JSON contents
-	err := json.Unmarshal(json_bytes, cad)
-	if err != nil {
-		log.Fatalf("Failed to parse json data into the KAD file\nError: %s", err.Error())
-	}
-
-	// and you can define settings via the KAD instance
-	cad.Hash = "usage_example"      // the name of the design
-	cad.FileStore = kad.STORE_LOCAL // store the files locally
-	cad.FileDirectory = "./"        // the path location where the files will be saved
-	cad.FileServePath = "/"         // the url path for the 'results' (don't worry about this)
-
-	// here are some more settings defined for this case
-	cad.Case.UsbWidth = 12 // all dimension are in 'mm'
-	cad.Fillet = 3         // 3mm radius on the rounded corners of the case
-
-	// lets draw the SVG files now
-	err = cad.Draw()
-	if err != nil {
-		log.Fatal("Failed to Draw the KAD file\nError: %s", err.Error())
-	}
-}
 ```
+$ go build cmd/cli.go
+```
+Then run it like so:
+```
+$ ./cli example/layout-01.json
+```
+It will create both SVG and EPS files for the layers specified in the `JSON` file.
+
+There are also some example `JSON` files in the `./example/` folder.
+
 *For more usage examples, check the `./test/` folder.*
 
 
 ### Output
+
+The example program will produce these files:
 
 | Top Layer | Switch Layer |
 |:---------:|:------------:|
