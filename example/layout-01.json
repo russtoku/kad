@@ -1,0 +1,23 @@
+{
+    "switch-type":3,
+    "stab-type":1,
+    "layout":[
+        [{"a":7},"Esc","Q","W","E","R","T",{"x":2},"Y","U","I","O","P","Back Space"],
+        ["Tab","A","S","D","F","G",{"x":2},"H","J","K","L",{"a":5},":\n\n\n\n\n\n;","\"\n\n\n\n\n\n'"],
+        [{"a":7},"Shift","Z","X","C","V","B",{"x":2},"N","M",{"a":5},"<\n\n\n\n\n\n,",">\n\n\n\n\n\n.","?\n\n\n\n\n\n/",{"a":7},"Shift"],
+        [{"y":0.25,"x":3.5},"Ctrl","L1","Cmd",{"x":0.75},"Space","L2","ALT"]
+    ],
+    "case": {
+        "case-type":"sandwich",
+        "mount-holes-size": 3,
+        "mount-holes-num": 4,
+        "mount-holes-edge": 8,
+        "usb-location":50,
+        "usb-width":15
+    },
+    "top-padding":9,
+    "left-padding":9,
+    "right-padding":9,
+    "bottom-padding":9,
+    "fillet":4
+}
